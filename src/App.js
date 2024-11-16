@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import TransactionsProvider from "./components/TransactionsProvider";
+import Dashboard from "./components/Dashboard";
+import AddTransaction from "./components/AddTransaction";
+import TransactionList from "./components/TransactionList";
+import Settings from "./components/Settings";
+import Navbar from "./Navbar";  // Import Navbar
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TransactionsProvider>
+      <div className="min-h-screen bg-gray-100 font-sans dark:bg-gray-800 dark:text-white">
+        <Navbar />  
+
+        <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/add" element={<AddTransaction />} />
+            <Route path="/transactions" element={<TransactionList />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+        </main>
+      </div>
+    </TransactionsProvider>
   );
 }
-
-export default App;
